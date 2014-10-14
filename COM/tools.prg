@@ -1,47 +1,46 @@
-*/**
+*********************************************************
 * Servidor COM que maneja la generación de los archivos CSV para su importación.
 *
-* @category   Visual FoxPro COM Class
 * @package    Dbf2Csv
-* @copyright  Copyright 2014 Jorge Alberto Ponce Turrubiates
+* @copyright  Copyright 2014 JAPT
 * @license    http://www.apache.org/licenses/LICENSE-2.0
 * @version    1.0.0, 2014-09-01
 * @author     Jorge Alberto Ponce Turrubiates (the.yorch@gmail.com)
 * @return CSV Files
-*/
+*********************************************************
 DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
-	*/**
-     * Ruta donde se guardan los archivos CSV
-     *
-     * @var string csvPath Ruta válida
-     * @access private
-     */
+	*********************************************************
+    * Ruta donde se guardan los archivos CSV
+    *
+    * @var string csvPath Ruta válida
+    * @access private
+    *********************************************************
 	csvPath = SPACE(0)
 	
-	*/**
-     * Tipo de BD (SQLServer o MySQL)
-     *
-     * @var string DBType Tipo de BD para generar el Script
-     * @access private
-     */
+	*********************************************************
+    * Tipo de BD (SQLServer o MySQL)
+	*
+    * @var string DBType Tipo de BD para generar el Script
+    * @access private
+    *********************************************************
 	DBType = 'SQLServer'
 	
-    */**
+    *********************************************************
 	* Genera un archivo CSV con la tabla seleccionada y su comando INSERT
 	*
 	* @param string usedTable Ruta Completa de la Tabla
 	* @return Archivo CSV Generado
-	*/
+	*********************************************************
     PROCEDURE generateCSV(usedTable AS String)
      	*SET ALTERNATE TO 'dbf2csv.log' ADDITIVE  
         SET DATE TO YMD  
        
-       	*/**
-	     * Cadena de retorno
-	     *
-	     * @var string retValue Regresa el Error si hubo
-	     * @access private
-	     */
+       	*********************************************************
+	    * Cadena de retorno
+	    *
+	    * @var string retValue Regresa el Error si hubo
+	    * @access private
+	    *********************************************************
         retValue = ''   
         
         * Si no ha definido la ruta de los archivos 

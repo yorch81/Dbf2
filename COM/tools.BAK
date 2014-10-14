@@ -1,21 +1,20 @@
-*/**
+*********************************************************
 * Servidor COM que maneja la generación de los archivos CSV para su importación.
 *
-* @category   Visual FoxPro COM Class
 * @package    Dbf2Csv
-* @copyright  Copyright 2014 Jorge Alberto Ponce Turrubiates
+* @copyright  Copyright 2014 JAPT
 * @license    http://www.apache.org/licenses/LICENSE-2.0
 * @version    1.0.0, 2014-09-01
 * @author     Jorge Alberto Ponce Turrubiates (the.yorch@gmail.com)
 * @return CSV Files
-*/
+*********************************************************
 DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
-	*/**
+	 *********************************************************
      * Ruta donde se guardan los archivos CSV
      *
      * @var string csvPath Ruta válida
      * @access private
-     */
+     *********************************************************
 	csvPath = SPACE(0)
 	
 	*/**
@@ -174,7 +173,7 @@ DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
 				CLOSE DATABASES ALL
 				CLOSE TABLES ALL
 			CATCH TO oErr
-				retValue = "No se pudo abrir la tabla DBF"
+				retValue = oErr.Message
 			FINALLY
 			ENDTRY
         ENDIF
