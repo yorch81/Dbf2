@@ -88,15 +88,15 @@ class Dbf2
 	protected $_mysqlSchema = '';
 
 	/**
-	* Constructor of class 
-	*
-	* @param string $provider A valid provider defaults SQL Server
-	* @param string $username A valid user in RDBMS
-	* @param string $password A valid password in RDBMS
-	* @param string $dbname A valid database in RDBMS
-	* @param string $csvPath A valid path for create files
-	* @return instance | null
-	*/
+	 * Constructor of class 
+	 *
+	 * @param string $provider A valid provider defaults SQL Server
+	 * @param string $username A valid user in RDBMS
+	 * @param string $password A valid password in RDBMS
+	 * @param string $dbname A valid database in RDBMS
+	 * @param string $csvPath A valid path for create files
+	 * @return instance | null
+	 */
 	public function __construct($provider = self::MSSQLSERVER, $username, $password, $dbname, $csvPath)
 	{
 		// If checkEnvironment()
@@ -133,11 +133,11 @@ class Dbf2
 	}
 
 	/**
-	* Create CSV and scripts files in path $csvPath
-	*
-	* @param string $dbfFile A valid table DBF
-	* @return true | false
-	*/
+	 * Create CSV and scripts files in path $csvPath
+	 *
+	 * @param string $dbfFile A valid table DBF
+	 * @return true | false
+	 */
 	public function generateFiles($dbfFile)
 	{
 		$retvalue  = false;
@@ -174,40 +174,40 @@ class Dbf2
 	}
 
 	/**
-	* Return true if error exists
-	*
-	* @return true | false
-	*/
+	 * Return true if error exists
+	 *
+	 * @return true | false
+	 */
 	public function hasError()
 	{
 		return !is_null($this->_errorCode);
 	}
 
 	/**
-	* Return last error message
-	*
-	* @return string
-	*/
+	 * Return last error message
+	 *
+	 * @return string
+	 */
 	public function getErrorCode()
 	{
 		return $this->_errorCode;
 	}
 
 	/**
-	* Drop Table if exists
-	*
-	* @return void
-	*/
+	 * Drop Table if exists
+	 *
+	 * @return void
+	 */
 	public function dropTable()
 	{
 		$this->_conn->executeCommand("DROP TABLE " . $this->_tableAlias);
 	}
 
 	/**
-	* Load and execute the scripts generated
-	*
-	* @return void
-	*/
+	 * Load and execute the scripts generated
+	 *
+	 * @return void
+	 */
 	private function executeScripts()
 	{
 		if (!$this->hasError()){
@@ -237,10 +237,10 @@ class Dbf2
 	}
 
 	/**
-	* Execute script in DB
-	*
-	* @return void
-	*/
+	 * Execute script in DB
+	 *
+	 * @return void
+	 */
 	private function executeCommand($commandSQL)
 	{
 		if (!$this->hasError()){
@@ -249,10 +249,10 @@ class Dbf2
 	}
 
 	/**
-	* Check id table exists in DB
-	*
-	* @return true | false
-	*/
+	 * Check id table exists in DB
+	 *
+	 * @return true | false
+	 */
 	private function existsTable()
 	{
 		// If provider is SQL Server
@@ -282,13 +282,13 @@ class Dbf2
 		else
 			return false;
 	}
-
+	
 	/**
-	* Return Alias of DBF table
-	* Example: C:\DBF\TABLE.DBF returns TABLE
-	*
-	* @return string
-	*/
+	 * Return Alias of DBF table
+	 * Example: C:\DBF\TABLE.DBF returns TABLE
+	 *
+	 * @return string
+	 */
 	private function getAlias($dbfFile)
 	{
 		$arrPath = explode('\\', $dbfFile);
@@ -299,11 +299,11 @@ class Dbf2
 	}
 
 	/**
-	* Check Environment Operating System must be Windows and
-	* the extension com_dotnet must be loaded
-	*
-	* @return true | false
-	*/
+	 * Check Environment Operating System must be Windows and
+	 * the extension com_dotnet must be loaded
+	 *
+	 * @return true | false
+	 */
 	private function checkEnvironment()
 	{
 		$this->_errorCode = null;
