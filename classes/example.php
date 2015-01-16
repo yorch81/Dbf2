@@ -3,6 +3,7 @@ require_once('config.php');
 require_once('Dbf2.class.php');
 
 $jsonDbf = urldecode($_POST['dbf']);
+//$jsonDbf = "ORDEN.DBF";
 
 $dbfFile = $dbfPath . $jsonDbf;
 

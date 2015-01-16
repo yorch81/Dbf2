@@ -11,7 +11,7 @@ y scripts de carga.
 * [sqlsrv extension](http://msdn.microsoft.com/en-us/sqlserver/ff657782.aspx/)
 * [com_dotnet extension](http://www.php.net/)
 * [Bootstrap 3](http://getbootstrap.com/)
-* [JQuery File Tree](http://www.abeautifulsite.net/jquery-file-tree/)
+* [JQuery File Tree](https://github.com/daverogers/jQueryFileTree)
 * [Visual FoxPro Runtime](http://msdn.microsoft.com/en-us/library/ms950411.aspx)
 
 ## Developer Documentation ##

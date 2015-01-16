@@ -69,10 +69,9 @@
 		    }
 		</style>
 		
-		<script src="./jquery.fileTree-1.01/jquery-1.9.1.js" type="text/javascript"></script>
-		<script src="./jquery.fileTree-1.01/jquery.easing.js" type="text/javascript"></script>
-		<script src="./jquery.fileTree-1.01/jqueryFileTree.js" type="text/javascript"></script>
-		<link href="./jquery.fileTree-1.01/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./jQueryFileTree-master/jquery-1.9.1.js" type="text/javascript"></script>
+		<script src="./jQueryFileTree-master/jqueryFileTree.js" type="text/javascript"></script>
+		<link href="./jQueryFileTree-master/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
 		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap.min.css" />
 		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 		
@@ -80,9 +79,9 @@
 			
 			$(document).ready( function() {
 				
-				$('#explorer').fileTree({ root: './', script: './jquery.fileTree-1.01/connectors/', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false }, function(file) { 
+				$('#explorer').fileTree({ root: './', script: './jQueryFileTree-master/connectors/', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false }, function(file) { 
 					file = file.substring(2);
-
+					alert (file);
 					$('#processing-modal').modal('toggle');
 					$('#label-process').html('Importando: ' + file);
 
