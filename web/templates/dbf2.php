@@ -33,7 +33,7 @@
 			
 			.file_explorer {
 				width: 300px;
-				height: 400px;
+				height: 300px;
 				border-top: solid 1px #BBB;
 				border-left: solid 1px #BBB;
 				border-bottom: solid 1px #FFF;
@@ -79,13 +79,23 @@
 			
 			$(document).ready( function() {
 				
-				$('#explorer').fileTree({ root: './', script: './jQueryFileTree-master/connectors/', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false }, function(file) { 
+				$('#explorer').fileTree({ root: './', script: './getfiles', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false }, function(file) { 
 					file = file.substring(2);
-					alert (file);
-					$('#processing-modal').modal('toggle');
-					$('#label-process').html('Importando: ' + file);
+					
+					$('#txtFile').val(file);
+				});
 
-					$.post('../classes/example.php', {dbf: file},
+				$('#explorer').on('filetreeexpand', 
+                        function (e, data){
+                            $('#txtPath').val(data.rel);
+                });
+				
+				$("#btn_import").click(function(){
+                    $('#processing-modal').modal('toggle');
+
+                    $('#label-process').html('Importando: ' + $('#txtFile').val());
+
+                    $.post('./import', {dbf: $('#txtFile').val()},
 	                    function(respuesta) {
 	                    	$('#processing-modal').modal('hide');
 	                        console.log(respuesta);
@@ -94,8 +104,7 @@
 	                        console.log('Error al ejecutar la petición');
 	                    }
 	                );
-				});
-				
+                });
 			});
 		</script>
 
@@ -111,7 +120,15 @@
 	    </div>
 		
 		<div class="example">
+			<label for="txtPath">Selected Path:</label>
+            <input id="txtPath" type="text" class="form-control" placeholder="Path" name="txtPath" required disabled>
+
+            <label for="txtFile">Selected File:</label>
+            <input id="txtFile" type="text" class="form-control" placeholder="File" name="txtFile" required disabled>
+
 			<div id="explorer" class="file_explorer"></div>
+
+			<button id="btn_import" class="btn btn-lg btn-primary btn-block">Import</button>
 		</div>
 	
 	  <!-- Static Modal -->
