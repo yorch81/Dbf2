@@ -1,11 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<title>jQuery File Tree Demo</title>
+		<title>DBF2</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="DBF2 Application">
+		<meta name="author" content="Jorge Alberto Ponce Turrubiates">
 		
+		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
+
 		<style type="text/css">
 			.body {
 			 	min-height: 2000px;
@@ -79,9 +82,13 @@
 			
 			$(document).ready( function() {
 				
-				$('#explorer').fileTree({ root: './', script: './getfiles', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false }, function(file) { 
+				$('#explorer').fileTree({ root: './', script: './getfiles', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false }, function(file) { 				
+					// Gets File Name
 					file = file.substring(2);
-					
+					var files = file.split("/");
+					var arrLen = files.length - 1;
+					file = files[arrLen];
+
 					$('#txtFile').val(file);
 				});
 
@@ -93,9 +100,11 @@
 				$("#btn_import").click(function(){
                     $('#processing-modal').modal('toggle');
 
-                    $('#label-process').html('Importando: ' + $('#txtFile').val());
+                    var filename = $('#txtPath').val() + $('#txtFile').val();
 
-                    $.post('./import', {dbf: $('#txtFile').val()},
+                    $('#label-process').html('Importing: ' + $('#txtFile').val());
+
+                    $.post('./import', {dbf: filename},
 	                    function(respuesta) {
 	                    	$('#processing-modal').modal('hide');
 	                        console.log(respuesta);
@@ -121,7 +130,7 @@
 		
 		<div class="example">
 			<label for="txtPath">Selected Path:</label>
-            <input id="txtPath" type="text" class="form-control" placeholder="Path" name="txtPath" required disabled>
+            <input id="txtPath" type="text" class="form-control" placeholder="Path" name="txtPath" value = "<?php echo $data['dbfdir'] ?>" required disabled>
 
             <label for="txtFile">Selected File:</label>
             <input id="txtFile" type="text" class="form-control" placeholder="File" name="txtFile" required disabled>
@@ -131,20 +140,18 @@
 			<button id="btn_import" class="btn btn-lg btn-primary btn-block">Import</button>
 		</div>
 	
-	  <!-- Static Modal -->
-	  <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
-	      <div class="modal-dialog">
-	          <div class="modal-content">
-	              <div class="modal-body">
-	                  <div class="text-center">
-	                      <img src="./img/procesando.gif" class="icon" />
-	                      <h5 id="label-process">Procesando... 
-	                      </h5>
-	                  </div>
-	              </div>
-	          </div>
-	      </div>
-	  </div>
-
+		<!-- Static Modal -->
+		<div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="text-center">
+							<img src="./img/processing.gif" class="icon" />
+							<h5 id="label-process">Processing ...</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+	  	</div>
 	</body>
 </html>

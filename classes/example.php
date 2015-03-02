@@ -2,10 +2,8 @@
 require_once('config.php');
 require_once('Dbf2.class.php');
 
-$jsonDbf = urldecode($_POST['dbf']);
-//$jsonDbf = "ORDEN.DBF";
 
-$dbfFile = $dbfPath . $jsonDbf;
+$dbfFile = "C:\\DBF\\COLONIAS.DBF";
 
 $dbf2 = new Dbf2(Dbf2::MSSQLSERVER, $username, $password, $dbname, $csvPath);
 

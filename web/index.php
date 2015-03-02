@@ -20,11 +20,12 @@ $app->get(
 // Import Dbf
 $app->post(
     '/import',
-    function () use ($app, $dbf2, $dbfPath) {
+    function () use ($app, $dbf2) {
         $jsonDbf = $app->request->post('dbf');
-        
-        $dbfFile = $dbfPath . $jsonDbf;
+        $jsonDbf = str_replace("/", "\\", $jsonDbf);
 
+        $dbfFile = $jsonDbf;
+        
         if ($dbf2->hasError()){
             echo $dbf2->getErrorCode();
         }
@@ -38,7 +39,7 @@ $app->post(
                 $dbf2->generateFiles($dbfFile);
             }
         }
-
+            
         $dbf2 = null;
     }
 );
@@ -46,30 +47,31 @@ $app->post(
 // Get Files
 $app->post(
     '/getfiles',
-    function () use ($app) {
+    function () use ($app, $dbfPath) {
         $dir = $app->request->post('dir');
 
         try{
             $app->response()->status(200);
 
-            $root = "C:/DBF/";
+            if ($dir == "./")
+                $dir = $dbfPath;
 
             $dir = urldecode($dir);
 
-            if( file_exists($root . $dir) ) {
-                $files = scandir($root . $dir);
+            if( file_exists($dir) ) {
+                $files = scandir($dir);
                 natcasesort($files);
                 if( count($files) > 2 ) { /* The 2 accounts for . and .. */
                     echo "<ul class=\"jqueryFileTree\" style=\"display: none;\">";
                     // All dirs
                     foreach( $files as $file ) {
-                        if( file_exists($root . $dir . $file) && $file != '.' && $file != '..' && is_dir($root . $dir . $file) ) {
+                        if( file_exists($dir . $file) && $file != '.' && $file != '..' && is_dir( $dir . $file) ) {
                             echo "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . htmlentities($dir . $file) . "/\">" . htmlentities($file) . "</a></li>";
                         }
                     }
                     // All files
                     foreach( $files as $file ) {
-                        if( file_exists($root . $dir . $file) && $file != '.' && $file != '..' && !is_dir($root . $dir . $file) ) {
+                        if( file_exists($dir . $file) && $file != '.' && $file != '..' && !is_dir($dir . $file) ) {
                             $ext = preg_replace('/^.*\./', '', $file);
                             echo "<li class=\"file ext_$ext\"><a href=\"#\" rel=\"" . htmlentities($dir . $file) . "\">" . htmlentities($file) . "</a></li>";
                         }
@@ -88,10 +90,10 @@ $app->post(
     }
 );
 
-// Dbf2
+// Dbf2 View
 $app->get("/dbf2", 
-    function () use ($app) {
-        //$app->view()->setData(array('esquemas' => $arrEsquemas));
+    function () use ($app, $dbfPath) {
+        $app->view()->setData(array('dbfdir' => $dbfPath));
         
         $app->render('dbf2.php');
     }
