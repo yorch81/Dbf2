@@ -26,6 +26,7 @@
 			.bsnavbar
 			{
 			  	margin-bottom: 19px;
+			  	height:60px;
 				min-height:124px;
 			}
 			
@@ -116,6 +117,10 @@
 	                    }
 	                );
                 });
+
+                $("#btn_credits").click(function() {
+                    $('#window-credits').modal('toggle');
+                });
 			});
 		</script>
 
@@ -127,6 +132,10 @@
 	      	<div class="navbar-header">
 	          <h1>DBF2</h1>
 	    	</div>
+
+	    	<ul class="nav navbar-nav navbar-right">
+              <li class="active" id="btn_credits"><a href="#">Credits<span class="sr-only">(current)</span></a></li>
+            </ul>
 	      </div>
 	    </div>
 		
@@ -142,6 +151,29 @@
 			<button id="btn_import" class="btn btn-lg btn-primary btn-block">Import</button>
 		</div>
 	
+		<!-- Static Modal Credits -->
+        <div class="modal fade" id="window-credits" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Credits</h4>
+                     </div>
+
+                    <div class="modal-body">
+                        <center>
+                            <p><h3>Jorge Alberto Ponce Turrubiates</h3></p>
+                            <p><h5><a href="mailto:the.yorch@gmail.com<">the.yorch@gmail.com</a></h5></p>
+                            <p><h5><a href="http://the-yorch.blogspot.mx/">Blog</a></h5></p>
+                            <p><h5><a href="https://bitbucket.org/yorch81">BitBucket</a></h5></p>
+                            <p><h5><a href="https://github.com/yorch81">GitHub</a></h5></p>
+                            <p></p>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 		<!-- Static Modal -->
 		<div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
 			<div class="modal-dialog">

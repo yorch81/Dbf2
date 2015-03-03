@@ -9,6 +9,9 @@ $app = new \Slim\Slim();
 
 $dbf2 = new Dbf2(Dbf2::MSSQLSERVER, $username, $password, $dbname, $csvPath);
 
+// Set Time Execution Limit
+set_time_limit (600);
+
 // Root
 $app->get(
     '/',
@@ -22,18 +25,20 @@ $app->post(
     '/import',
     function () use ($app, $dbf2) {
         $jsonDbf = $app->request->post('dbf');
+
+        // Replace / for \ for Windows
         $jsonDbf = str_replace("/", "\\", $jsonDbf);
 
         $dbfFile = $jsonDbf;
-        $msj = "Ok";
+        $msg = "Ok";
 
         if ($dbf2->hasError()){
-            $msj = $dbf2->getErrorCode();
+            $msg = $dbf2->getErrorCode();
         }
         else{
             if (!$dbf2->generateFiles($dbfFile)){
                 if ($dbf2->hasError()){
-                    $msj = $dbf2->getErrorCode();
+                    $msg = $dbf2->getErrorCode();
                 }
 
                 $dbf2->dropTable();
@@ -41,7 +46,7 @@ $app->post(
             }
         }
          
-        echo $msj;
+        echo $msg;
 
         $dbf2 = null;
     }
@@ -102,4 +107,5 @@ $app->get("/dbf2",
     }
 );
 
+// Run Slim Application
 $app->run();
