@@ -25,21 +25,24 @@ $app->post(
         $jsonDbf = str_replace("/", "\\", $jsonDbf);
 
         $dbfFile = $jsonDbf;
-        
+        $msj = "Ok";
+
         if ($dbf2->hasError()){
-            echo $dbf2->getErrorCode();
+            $msj = $dbf2->getErrorCode();
         }
         else{
             if (!$dbf2->generateFiles($dbfFile)){
                 if ($dbf2->hasError()){
-                    echo $dbf2->getErrorCode();
+                    $msj = $dbf2->getErrorCode();
                 }
 
                 $dbf2->dropTable();
                 $dbf2->generateFiles($dbfFile);
             }
         }
-            
+         
+        echo $msj;
+
         $dbf2 = null;
     }
 );

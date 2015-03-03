@@ -105,9 +105,11 @@
                     $('#label-process').html('Importing: ' + $('#txtFile').val());
 
                     $.post('./import', {dbf: filename},
-	                    function(respuesta) {
+	                    function(response) {
 	                    	$('#processing-modal').modal('hide');
-	                        console.log(respuesta);
+
+	                    	if (response != "Ok")
+	                    		alert(response);
 	                }).error(
 	                    function(){
 	                        console.log('Error al ejecutar la petición');
