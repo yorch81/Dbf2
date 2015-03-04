@@ -26,7 +26,7 @@
 			.bsnavbar
 			{
 			  	margin-bottom: 19px;
-			  	height:60px;
+			  	height:65px;
 				min-height:124px;
 			}
 			
@@ -76,7 +76,7 @@
 		<script src="./jQueryFileTree-master/jquery-1.9.1.js" type="text/javascript"></script>
 		<script src="./jQueryFileTree-master/jqueryFileTree.js" type="text/javascript"></script>
 		<link href="./jQueryFileTree-master/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
-		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="./metro-bootstrap-master/dist/css/metro-bootstrap.css" />
 		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 		
 		<script type="text/javascript">
@@ -99,24 +99,28 @@
                 });
 				
 				$("#btn_import").click(function(){
-                    $('#processing-modal').modal('toggle');
+                    if ($('#txtFile').val() == '')
+          				alert ('Must Select a DBF FIle');
+          			else {
+          				$('#processing-modal').modal('toggle');
+          				
+          				var filename = $('#txtPath').val() + $('#txtFile').val();
 
-                    var filename = $('#txtPath').val() + $('#txtFile').val();
+	                    $('#label-process').html('Importing: ' + $('#txtFile').val());
 
-                    $('#label-process').html('Importing: ' + $('#txtFile').val());
+	                    $.post('./import', {dbf: filename},
+		                    function(response) {
+		                    	$('#processing-modal').modal('hide');
 
-                    $.post('./import', {dbf: filename},
-	                    function(response) {
-	                    	$('#processing-modal').modal('hide');
-
-	                    	if (response != "Ok"){
-	                    		alert(response);
-	                    	}
-	                }).error(
-	                    function(){
-	                        console.log('Error al ejecutar la petición');
-	                    }
-	                );
+		                    	if (response != "Ok"){
+		                    		alert(response);
+		                    	}
+		                }).error(
+		                    function(){
+		                        console.log('Error executing Post');
+		                    }
+		                );
+          			}
                 });
 
                 $("#btn_credits").click(function() {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Login</title>
+    <title>DBF2 Login</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,9 +11,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./metro-bootstrap-master/dist/css/metro-bootstrap.css" />
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -67,15 +67,17 @@
 
   <body>
     <div class="container">
-    <!--
-        <div class="alert alert-danger" role="alert">
-          <strong>Login Error !!!</strong> ${loginError}.
-        </div>
-    -->
+      <?php 
+          if (isset($_SESSION["error"])) {?>
+          <div class="alert alert-danger" role="alert">
+            <strong>Login Error !!!</strong> User or Password is incorrect.
+          </div>
+      <?php }?>      
+      
       <form class="form-signin" role="form" action="./login" method="POST">
-        <h2 class="form-signin-heading">MPC Web</h2>
-        <input type="text" class="form-control" placeholder="Usuario" name="txtUser" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" name="txtPassword" required>
+        <h2 class="form-signin-heading">DBF2 Login</h2>
+        <input type="text" class="form-control" placeholder="Application User" name="txtUser" required autofocus>
+        <input type="password" class="form-control" placeholder="Application Password" name="txtPassword" required>
       
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
       </form>

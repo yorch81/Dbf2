@@ -136,6 +136,8 @@ $app->post(
 
         if ($user == $appUser && $password == $appPassword)
             $_SESSION["key"] = "DBF2";
+        else
+            $_SESSION["error"] = "User or Password is incorrect";
 
         if (isset($_SESSION["key"]))
             $app->redirect('./dbf2');
