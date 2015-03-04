@@ -196,11 +196,18 @@ class Dbf2
 	/**
 	 * Drop Table if exists
 	 *
+	 * @param string $dbfFile A valid table DBF
 	 * @return void
 	 */
-	public function dropTable()
+	public function dropTable($dbfFile)
 	{
-		$this->_conn->executeCommand("DROP TABLE " . $this->_tableAlias);
+		if (!$this->hasError()){
+			if (file_exists($dbfFile)){
+				$this->_tableAlias = '';
+				$this->_tableAlias = $this->getAlias($dbfFile);
+				$this->_conn->executeCommand("DROP TABLE " . $this->_tableAlias);
+			}
+		}
 	}
 
 	/**

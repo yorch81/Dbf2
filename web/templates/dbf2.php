@@ -109,8 +109,9 @@
 	                    function(response) {
 	                    	$('#processing-modal').modal('hide');
 
-	                    	if (response != "Ok")
+	                    	if (response != "Ok"){
 	                    		alert(response);
+	                    	}
 	                }).error(
 	                    function(){
 	                        console.log('Error al ejecutar la petición');

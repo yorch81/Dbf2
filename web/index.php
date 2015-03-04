@@ -9,6 +9,10 @@ $app = new \Slim\Slim();
 
 $dbf2 = new Dbf2(Dbf2::MSSQLSERVER, $username, $password, $dbname, $csvPath);
 
+if ($dbf2->hasError()){
+    die("Unable load Application DBF2");
+}
+
 // Set Time Execution Limit
 set_time_limit (600);
 
@@ -40,9 +44,6 @@ $app->post(
                 if ($dbf2->hasError()){
                     $msg = $dbf2->getErrorCode();
                 }
-
-                $dbf2->dropTable();
-                $dbf2->generateFiles($dbfFile);
             }
         }
          
