@@ -16,11 +16,17 @@ if ($dbf2->hasError()){
 // Set Time Execution Limit
 set_time_limit (600);
 
+// Init Session
+session_start();
+
 // Root
 $app->get(
     '/',
     function () use ($app) {
-        $app->redirect('./dbf2');
+        if (isset($_SESSION["key"]))
+            $app->redirect('./dbf2');
+        else
+            $app->redirect('./login');
     }
 );
 
@@ -102,9 +108,39 @@ $app->post(
 // Dbf2 View
 $app->get("/dbf2", 
     function () use ($app, $dbfPath) {
+        if (! isset($_SESSION["key"]))
+            $app->redirect('./login');
+
         $app->view()->setData(array('dbfdir' => $dbfPath));
         
         $app->render('dbf2.php');
+    }
+);
+
+// Login View
+$app->get("/login", 
+    function () use ($app, $dbfPath) {  
+        if (isset($_SESSION["key"]))
+            $app->redirect('./dbf2');
+
+        $app->render('login.php');
+    }
+);
+
+// Login Post
+$app->post(
+    '/login',
+    function () use ($app, $appUser, $appPassword) {
+        $user = $app->request->post('txtUser');
+        $password = $app->request->post('txtPassword');
+
+        if ($user == $appUser && $password == $appPassword)
+            $_SESSION["key"] = "DBF2";
+
+        if (isset($_SESSION["key"]))
+            $app->redirect('./dbf2');
+        else
+            $app->redirect('./login');
     }
 );
 
