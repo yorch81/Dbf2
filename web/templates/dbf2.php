@@ -80,7 +80,18 @@
 		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 		
 		<script type="text/javascript">
-			
+			// Drop Table
+			function dropTable(dbfName){
+				$.post('./drop', {dbf: dbfName},
+		                    function(response) {
+		                    	console.log(response);
+		                }).error(
+		                    function(){
+		                        console.log('Error executing Post');
+		                    }
+		                );
+			}
+
 			$(document).ready( function() {
 				
 				$('#explorer').fileTree({ root: './', script: './getfiles', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false }, function(file) { 				
@@ -112,9 +123,20 @@
 		                    function(response) {
 		                    	$('#processing-modal').modal('hide');
 
-		                    	if (response != "Ok"){
-		                    		alert(response);
-		                    	}
+		                    	switch(response) {
+								    case "1":
+								        alert("DBF File not exists");
+								        break;
+								    case "2":
+								    	var r = confirm("Table Already Exists, Want you drop the Table?");
+										if (r == true) {
+										    dropTable(filename);
+										} 								        
+
+								        break;
+								    case "3":
+								        alert("Error in Server COM");   
+								}
 		                }).error(
 		                    function(){
 		                        console.log('Error executing Post');
@@ -144,16 +166,18 @@
 	      </div>
 	    </div>
 		
-		<div class="example">
-			<label for="txtPath">Selected Path:</label>
-            <input id="txtPath" type="text" class="form-control" placeholder="Path" name="txtPath" value = "<?php echo $data['dbfdir'] ?>" required disabled>
+		<div class="container">
+			<div class="example">
+				<label for="txtPath">Selected Path:</label>
+	            <input id="txtPath" type="text" class="form-control" placeholder="Path" name="txtPath" value = "<?php echo $data['dbfdir'] ?>" required disabled>
 
-            <label for="txtFile">Selected File:</label>
-            <input id="txtFile" type="text" class="form-control" placeholder="File" name="txtFile" required disabled>
+	            <label for="txtFile">Selected File:</label>
+	            <input id="txtFile" type="text" class="form-control" placeholder="File" name="txtFile" required disabled>
 
-			<div id="explorer" class="file_explorer"></div>
+				<div id="explorer" class="file_explorer"></div>
 
-			<button id="btn_import" class="btn btn-lg btn-primary btn-block">Import</button>
+				<button id="btn_import" class="btn btn-lg btn-primary btn-block">Import</button>
+			</div>
 		</div>
 	
 		<!-- Static Modal Credits -->

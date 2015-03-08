@@ -136,11 +136,11 @@ class Dbf2
 	 * Create CSV and scripts files in path $csvPath
 	 *
 	 * @param string $dbfFile A valid table DBF
-	 * @return true | false
+	 * @return 0 Sucessful 1 DBF not Exists 2 Table Already Exists 3 Server COM Error
 	 */
 	public function generateFiles($dbfFile)
 	{
-		$retvalue  = false;
+		$retvalue = 0;
 
 		$this->_errorCode = null;
 
@@ -150,6 +150,7 @@ class Dbf2
 				$this->_tableAlias = $this->getAlias($dbfFile);
 
 				if ($this->existsTable()){
+					$retvalue = 2;
 					$this->_errorCode = "The table " . $this->getAlias($dbfFile) ." already exists";
 				}
 				else{
@@ -158,15 +159,17 @@ class Dbf2
 					// No Error
 					if (strlen($comMsj) == 0){
 						$this->executeScripts();
-						$retvalue = true;
+						$retvalue = 0;
 					}
 					else{
+						$retvalue = 3;
 						$this->_errorCode = $comMsj;
 					}
 				}
 			}
 			else{
-				$this->_errorCode = "The DBF file $dbfFile not exists";;
+				$this->_errorCode = "The DBF file $dbfFile not exists";
+				$retValue = 1;
 			}	
 		}
 

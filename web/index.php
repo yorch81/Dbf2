@@ -40,20 +40,31 @@ $app->post(
         $jsonDbf = str_replace("/", "\\", $jsonDbf);
 
         $dbfFile = $jsonDbf;
-        $msg = "Ok";
+        $result = $dbf2->generateFiles($dbfFile);
 
-        if ($dbf2->hasError()){
-            $msg = $dbf2->getErrorCode();
-        }
-        else{
-            if (!$dbf2->generateFiles($dbfFile)){
-                if ($dbf2->hasError()){
-                    $msg = $dbf2->getErrorCode();
-                }
-            }
-        }
-         
-        echo $msg;
+        $app->response()->status(200);
+
+        echo $result;
+
+        $dbf2 = null;
+    }
+);
+
+// Import Dbf
+$app->post(
+    '/drop',
+    function () use ($app, $dbf2) {
+        $jsonDbf = $app->request->post('dbf');
+
+        // Replace / for \ for Windows
+        $jsonDbf = str_replace("/", "\\", $jsonDbf);
+
+        $dbfFile = $jsonDbf;
+        $dbf2->dropTable($dbfFile);
+
+        $app->response()->status(200);
+
+        echo 'Ok';
 
         $dbf2 = null;
     }
