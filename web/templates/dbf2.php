@@ -78,7 +78,8 @@
 		<link href="./jQueryFileTree-master/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
 		<link rel="stylesheet" href="./metro-bootstrap-master/dist/css/metro-bootstrap.css" />
 		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-		
+		<script src="./js/bootbox.js"></script>
+
 		<script type="text/javascript">
 			// Drop Table
 			function dropTable(dbfName){
@@ -125,17 +126,18 @@
 
 		                    	switch(response) {
 								    case "1":
-								        alert("DBF File not exists");
+								        bootbox.alert("DBF File not exists");
 								        break;
-								    case "2":
-								    	var r = confirm("Table Already Exists, Want you drop the Table?");
-										if (r == true) {
-										    dropTable(filename);
-										} 								        
+								    case "2":					        
+										bootbox.confirm("Table Already Exists, Want you drop the Table?", 
+											function(result){
+												if (result)
+													dropTable(filename);
+											});
 
 								        break;
 								    case "3":
-								        alert("Error in Server COM");   
+								    	bootbox.alert("Error in Server COM");
 								}
 		                }).error(
 		                    function(){

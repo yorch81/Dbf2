@@ -99,7 +99,9 @@ $app->post(
                     foreach( $files as $file ) {
                         if( file_exists($dir . $file) && $file != '.' && $file != '..' && !is_dir($dir . $file) ) {
                             $ext = preg_replace('/^.*\./', '', $file);
-                            echo "<li class=\"file ext_$ext\"><a href=\"#\" rel=\"" . htmlentities($dir . $file) . "\">" . htmlentities($file) . "</a></li>";
+                            // Filter DBF
+                            if (strtoupper($ext) == "DBF")
+                                echo "<li class=\"file ext_$ext\"><a href=\"#\" rel=\"" . htmlentities($dir . $file) . "\">" . htmlentities($file) . "</a></li>";
                         }
                     }
                     echo "</ul>";   
