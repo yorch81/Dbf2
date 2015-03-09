@@ -2,7 +2,7 @@
 require_once('config.php');
 require_once('Dbf2.class.php');
 
-$dbf2 = new Dbf2(Dbf2::MSSQLSERVER, $username, $password, $dbname, $csvPath);
+$dbf2 = new Dbf2(Dbf2::MSSQLSERVER, $hostname, $username, $password, $dbname, $csvPath);
 //$dbf2 = new Dbf2(Dbf2::MYSQL, $username, $password, $dbname, $csvPath);
 
 if ($dbf2->hasError()){

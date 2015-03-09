@@ -91,13 +91,14 @@ class Dbf2
 	 * Constructor of class 
 	 *
 	 * @param string $provider A valid provider defaults SQL Server
+	 * @param string $hostname HostName example: localhost\MSSQLSERVER
 	 * @param string $username A valid user in RDBMS
 	 * @param string $password A valid password in RDBMS
 	 * @param string $dbname A valid database in RDBMS
 	 * @param string $csvPath A valid path for create files
 	 * @return instance | null
 	 */
-	public function __construct($provider = self::MSSQLSERVER, $username, $password, $dbname, $csvPath)
+	public function __construct($provider = self::MSSQLSERVER, $hostname, $username, $password, $dbname, $csvPath)
 	{
 		// If checkEnvironment()
 		if ($this->checkEnvironment()){
@@ -116,7 +117,7 @@ class Dbf2
 					$this->_com->csvPath = $this->_csvPath;
 
 					// Connect to localhost
-					$this->_conn = MyDb::getConnection($provider . 'Db', 'localhost', $username, $password, $dbname);
+					$this->_conn = MyDb::getConnection($provider . 'Db', $hostname, $username, $password, $dbname);
 
 					// If connection is MySQL save schema
 					if ($this->_conn->getProvider() == 'MySQLDb')

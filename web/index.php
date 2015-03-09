@@ -7,7 +7,7 @@ require_once('../classes/Dbf2.class.php');
 
 $app = new \Slim\Slim();
 
-$dbf2 = new Dbf2(Dbf2::MSSQLSERVER, $username, $password, $dbname, $csvPath);
+$dbf2 = new Dbf2(Dbf2::MSSQLSERVER, $hostname, $username, $password, $dbname, $csvPath);
 
 if ($dbf2->hasError()){
     die("Unable load Application DBF2");
