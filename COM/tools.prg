@@ -113,7 +113,7 @@ DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
 				ENDIF 
 
 				IF gnTabFile < 0 
-					retValue "No se puede abrir el archivo" + fileTab
+					retValue = "No se puede abrir el archivo" + fileTab
 				ELSE 
 					=FWRITE(gnTabFile, textFile) 
 				ENDIF 
