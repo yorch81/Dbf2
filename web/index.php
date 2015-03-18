@@ -50,7 +50,7 @@ $app->post(
     }
 );
 
-// Import Dbf
+// Drop Table
 $app->post(
     '/drop',
     function () use ($app, $dbf2) {

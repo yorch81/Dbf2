@@ -112,7 +112,7 @@
 				
 				$("#btn_import").click(function(){
                     if ($('#txtFile').val() == '')
-          				alert ('Must Select a DBF FIle');
+          				bootbox.alert('Must Select a DBF FIle');
           			else {
           				$('#processing-modal').modal('toggle');
           				

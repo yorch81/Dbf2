@@ -1,9 +1,8 @@
 # Dbf2 CSV Importer #
 
 ## Description ##
-Dbf2 es una herramienta para generar y cargar archivos CSV en SQL Server o MySQL
-utlizando un servidor COM desarrollado en Visual FoxPro 8 para generar CSVs 
-y scripts de carga.
+Dbf2 is a tool for generate and import DBF Files is SQL Server and MySQL, 
+with a COM Server in Visual Fox Pro 8.
 
 ## Requirements ##
 * [PHP 5.4.1 or higher](http://www.php.net/)
@@ -15,22 +14,19 @@ y scripts de carga.
 * [Visual FoxPro Runtime](http://msdn.microsoft.com/en-us/library/ms950411.aspx)
 
 ## Developer Documentation ##
-El código está documentado tanto de PHP como el Server COM escrito en VFP8.
+PhpDoc.
 
 ## Installation ##
-Copiar el directorio o clonar el repositorio. El servidor COM se distribuye también
-y solo se debe registrar de la siguiente manera: regsvr32 dbf2csv.dll
+Register COM Server with Administrator Permissions regsvr32 dbf2csv.dll
+Clone Repository DBF2.
+Close Repository MyDb.
 
 ## Basic Example ##
 ver example.php
 
 ## Notes ##
-Está aplicacion solo funciona en MS Windows.
-Debe tener instalado Visual FoxPro o el runtime.
-El Servidor de BD donde se importarán los datos, solo puede ser LOCALHOST.
-Esta aplicación fué desarrollada en base a la problemática de importar tablas de FoxPro
-a SQL Server, ya que con Servidores Vinculados la carga es muy lenta, importar una tabla
-de 1 millón de registros tarda alrededor de 1 hora, con CSV tarda alrededor de 2 minutos.
+This Tool only works in Windows, and the host only must be localhost.
+Sorry, my english is bad :(.
 
 ## References ##
 http://es.wikipedia.org/wiki/Component_Object_Model
