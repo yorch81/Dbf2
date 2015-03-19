@@ -8,7 +8,7 @@ with a COM Server in Visual Fox Pro 8.
 * [PHP 5.4.1 or higher](http://www.php.net/)
 * [mysqli extension](http://www.php.net/)
 * [sqlsrv extension](http://msdn.microsoft.com/en-us/sqlserver/ff657782.aspx/)
-* [com_dotnet extension](http://www.php.net/)
+* [com_dotnet extension](http://php.net/manual/en/class.dotnet.php)
 * [Bootstrap 3](http://getbootstrap.com/)
 * [JQuery File Tree](https://github.com/daverogers/jQueryFileTree)
 * [Visual FoxPro Runtime](http://msdn.microsoft.com/en-us/library/ms950411.aspx)
@@ -22,10 +22,14 @@ Clone Repository DBF2.
 Close Repository MyDb.
 
 ## Basic Example ##
-ver example.php
+see example.php
 
 ## Notes ##
 This Tool only works in Windows, and the host only must be localhost.
+The DBFs Files are opened in Exclusive Mode.
+For SQL Server the Hostname must include INSTANCE, if necessary.
+Example: localhost\SQLINSTANCE
+
 Sorry, my english is bad :(.
 
 ## References ##

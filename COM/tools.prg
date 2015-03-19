@@ -6,7 +6,7 @@
 * @license    http://www.apache.org/licenses/LICENSE-2.0
 * @version    1.0.0, 2014-09-01
 * @author     Jorge Alberto Ponce Turrubiates (the.yorch@gmail.com)
-* @return CSV Files
+* @return     Generate Import Files
 *********************************************************
 DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
 	*********************************************************
@@ -47,10 +47,15 @@ DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
         
         * If CSV path is not defined
         IF LEN(THIS.csvPath) = 0 THEN
-        	retValue = "The CSV Path does not Exists"
+        	retValue = "The CSV Path is not Defined"
         ELSE
         	TRY
-        		* Use Table with Macro
+        		*********************************************************
+			    * Open DBF Table
+			    *
+			    * Notes: The DBF File is open in exclusive mode for generate
+			    * 		 CSVs Files.
+			    *********************************************************
 				USE &usedTable 
 				
 				* Get CSV File

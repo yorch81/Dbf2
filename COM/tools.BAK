@@ -6,11 +6,11 @@
 * @license    http://www.apache.org/licenses/LICENSE-2.0
 * @version    1.0.0, 2014-09-01
 * @author     Jorge Alberto Ponce Turrubiates (the.yorch@gmail.com)
-* @return CSV Files
+* @return     Generate Import Files
 *********************************************************
 DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
 	*********************************************************
-    * CSV Path to Save CSVs Generated
+    * CSV Path to Save CSVs ans Scripts Generated
     *
     * @var string csvPath Valid Path
     * @access private
@@ -50,7 +50,12 @@ DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
         	retValue = "The CSV Path does not Exists"
         ELSE
         	TRY
-        		* Use Table with Macro
+        		*********************************************************
+			    * Open DBF Table
+			    *
+			    * Notes: The DBF File is open in exclusive mode for generate
+			    * 		 CSVs Files.
+			    *********************************************************
 				USE &usedTable 
 				
 				* Get CSV File
