@@ -250,6 +250,7 @@ class Dbf2
 	/**
 	 * Execute script in DB
 	 *
+	 * @param string $commandSQL SQL Query
 	 * @return void
 	 */
 	private function executeCommand($commandSQL)
@@ -298,6 +299,7 @@ class Dbf2
 	 * Return Alias of DBF table
 	 * Example: C:\DBF\TABLE.DBF returns TABLE
 	 *
+	 * @param string $dbfFile DBF File
 	 * @return string
 	 */
 	private function getAlias($dbfFile)
