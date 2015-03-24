@@ -37,6 +37,14 @@ http://es.wikipedia.org/wiki/Component_Object_Model
 http://msdn.microsoft.com/es-es/library/cc450432(v=vs.71).aspx
 http://php.net/manual/es/class.com.php
 
+## Environment Test ##
+- Windows 8 Enterprise x64
+- XAMPP 1.8.2
+- PHP: 5.4.31
+- Microsoft Visual Fox Pro 8.0 SP1
+
+P.D. Let's go play !!!
+
 
 
 
