@@ -3,3 +3,5 @@
 config.php
 *.dll
 *.log
+vendor/
+*.lock

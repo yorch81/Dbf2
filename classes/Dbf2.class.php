@@ -1,6 +1,4 @@
 <?php
-require_once('../../MyDb/MyDb.class.php');
-
 /**
  * Dbf2 
  *

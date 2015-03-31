@@ -1,4 +1,4 @@
-# Dbf2 CSV Importer #
+# Dbf2 Importer #
 
 ## Description ##
 Dbf2 is a tool for generate and import DBF Files is SQL Server and MySQL, 

@@ -1,5 +1,5 @@
 <?php
-require 'Slim/Slim.php';
+require "../vendor/autoload.php";
 require_once('../classes/config.php');
 require_once('../classes/Dbf2.class.php');
 
