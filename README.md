@@ -14,12 +14,24 @@ with a COM Server in Visual Fox Pro 8.
 * [Visual FoxPro Runtime](http://msdn.microsoft.com/en-us/library/ms950411.aspx)
 
 ## Developer Documentation ##
-PhpDoc.
+In the code PhpDoc.
 
 ## Installation ##
 Register COM Server with Administrator Permissions regsvr32 dbf2csv.dll
 Clone Repository DBF2.
-Close Repository MyDb.
+Execute composer.phar install for download dependencies.
+Create in directory classes a script config.php, with the next structure:
+
+<?php
+$hostname = 'localhost';
+$username = 'myuser';
+$password = 'mypassword';
+$dbname   = 'mydbname';
+$csvPath  =  "C:/PATH_CSV/";
+$dbfPath  = "C:/PATH_DBF/";
+$appUser  = "application_user";
+$appPassword  = "application_password";
+?>
 
 ## Basic Example ##
 see example.php
