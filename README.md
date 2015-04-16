@@ -14,7 +14,7 @@ with a COM Server in Visual Fox Pro 8.
 * [Visual FoxPro Runtime](http://msdn.microsoft.com/en-us/library/ms950411.aspx)
 
 ## Developer Documentation ##
-In the code PhpDoc.
+Execute phpdoc -d classes/ 
 
 ## Installation ##
 Register COM Server with Administrator Permissions regsvr32 dbf2csv.dll

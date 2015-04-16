@@ -94,7 +94,6 @@ class Dbf2
 	 * @param string $password A valid password in RDBMS
 	 * @param string $dbname A valid database in RDBMS
 	 * @param string $csvPath A valid path for create files
-	 * @return instance | null
 	 */
 	public function __construct($provider = self::MSSQLSERVER, $hostname, $username, $password, $dbname, $csvPath)
 	{
@@ -178,7 +177,7 @@ class Dbf2
 	/**
 	 * Return true if error exists
 	 *
-	 * @return true | false
+	 * @return boolean
 	 */
 	public function hasError()
 	{
@@ -199,7 +198,6 @@ class Dbf2
 	 * Drop Table if exists
 	 *
 	 * @param string $dbfFile A valid table DBF
-	 * @return void
 	 */
 	public function dropTable($dbfFile)
 	{
@@ -215,7 +213,6 @@ class Dbf2
 	/**
 	 * Load and execute the scripts generated
 	 *
-	 * @return void
 	 */
 	private function executeScripts()
 	{
@@ -249,7 +246,6 @@ class Dbf2
 	 * Execute script in DB
 	 *
 	 * @param string $commandSQL SQL Query
-	 * @return void
 	 */
 	private function executeCommand($commandSQL)
 	{
@@ -261,7 +257,7 @@ class Dbf2
 	/**
 	 * Check id table exists in DB
 	 *
-	 * @return true | false
+	 * @return boolean
 	 */
 	private function existsTable()
 	{
@@ -313,7 +309,7 @@ class Dbf2
 	 * Check Environment Operating System must be Windows and
 	 * the extension com_dotnet must be loaded
 	 *
-	 * @return true | false
+	 * @return boolean
 	 */
 	private function checkEnvironment()
 	{
