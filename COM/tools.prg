@@ -89,13 +89,16 @@ DEFINE CLASS Tools AS CUSTOM OLEPUBLIC
 				* Gets Fields
 				numFields = AFIELDS(arrFields) 				
 				FOR nCount = 1 TO numFields
-					IF THIS.DBType = 'SQLServer' THEN
-						tableFields = tableFields + arrFields(nCount,1) + ' VARCHAR(MAX) NULL,' + CHR(13)
-					ELSE
-						tableFields = tableFields + arrFields(nCount,1) + ' VARCHAR(65535) NULL,' + CHR(13)
+					* Ignore Memo Fields
+					IF arrFields(nCount,2) <> 'M' then
+						IF THIS.DBType = 'SQLServer' THEN
+							tableFields = tableFields + arrFields(nCount,1) + ' VARCHAR(MAX) NULL,' + CHR(13)
+						ELSE
+							tableFields = tableFields + arrFields(nCount,1) + ' VARCHAR(65535) NULL,' + CHR(13)
+						ENDIF
+							
+						nameFields = nameFields + arrFields(nCount,1) + ','
 					ENDIF
-						
-					nameFields = nameFields + arrFields(nCount,1) + ','
 				ENDFOR
 
 				* Remove last ,
