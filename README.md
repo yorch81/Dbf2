@@ -1,8 +1,7 @@
 # Dbf2 Importer #
 
 ## Description ##
-Dbf2 is a tool for generate and import DBF Files is SQL Server and MySQL, 
-with a COM Server in Visual Fox Pro 8.
+Dbf2 is a tool for import DBF Files for SQL Server and MySQL, with a COM Server in Visual Fox Pro 8.
 
 ## Requirements ##
 * [PHP 5.4.1 or higher](http://www.php.net/)
@@ -19,10 +18,11 @@ Execute phpdoc -d classes/
 ## Installation ##
 Register COM Server with Administrator Permissions regsvr32 dbf2csv.dll
 Clone Repository DBF2.
-Execute composer.phar install for download dependencies.
+Execute composer.phar for install for download dependencies.
 Create in directory classes a script config.php, with the next structure:
 
-<?php
+~~~
+
 $hostname = 'localhost';
 $username = 'myuser';
 $password = 'mypassword';
@@ -31,7 +31,8 @@ $csvPath  =  "C:/PATH_CSV/";
 $dbfPath  = "C:/PATH_DBF/";
 $appUser  = "application_user";
 $appPassword  = "application_password";
-?>
+
+~~~
 
 ## Basic Example ##
 see example.php
