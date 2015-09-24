@@ -10,7 +10,7 @@
   
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+    <script src="./jQueryFileTree-master/jquery-1.9.1.js" type="text/javascript"></script> 
     <link rel="stylesheet" href="./metro-bootstrap-master/dist/css/metro-bootstrap.css" />
 
     <script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
