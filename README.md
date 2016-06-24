@@ -23,6 +23,7 @@ Create in directory classes a script config.php, with the next structure:
 
 ~~~
 
+$dbtype   = 'MSSQLSERVER';
 $hostname = 'localhost';
 $username = 'myuser';
 $password = 'mypassword';

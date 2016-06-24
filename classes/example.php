@@ -11,7 +11,7 @@ if ($dbf2->hasError()){
     die("Unable load Application DBF2");
 }
 else{
-	$dbfFile = "C:TEMP/DBF/COLONIAS.DBF";
+	$dbfFile = "C:/TEMP/DBF/COLONIAS.DBF";
 
 	if (!$dbf2->generateFiles($dbfFile)){
 		if ($dbf2->hasError()){

@@ -113,8 +113,13 @@ class Dbf2
 					$this->_csvPath = $csvPath;
 					$this->_com->csvPath = $this->_csvPath;
 
+					// Add DBMS Ports
+					$dbPort = 1433;
+					if ($provider == self::MYSQL)
+						$dbPort = 3306;
+
 					// Connect to localhost
-					$this->_conn = MyDb::getConnection($provider . 'Db', $hostname, $username, $password, $dbname);
+					$this->_conn = MyDb::getConnection($provider . 'Db', $hostname, $username, $password, $dbname, $dbPort);
 
 					// If connection is MySQL save schema
 					if ($this->_conn->getProvider() == 'MySQLDb')
