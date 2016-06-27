@@ -26,7 +26,7 @@ session_start();
 $app->get(
     '/',
     function () use ($app) {
-        if (isset($_SESSION["key"]))
+        if (isset($_SESSION["dbf2"]))
             $app->redirect('./dbf2');
         else
             $app->redirect('./login');
@@ -124,7 +124,7 @@ $app->post(
 // Dbf2 View
 $app->get("/dbf2", 
     function () use ($app, $dbfPath) {
-        if (! isset($_SESSION["key"]))
+        if (! isset($_SESSION["dbf2"]))
             $app->redirect('./login');
 
         $app->view()->setData(array('dbfdir' => $dbfPath));
@@ -136,7 +136,7 @@ $app->get("/dbf2",
 // Login View
 $app->get("/login", 
     function () use ($app, $dbfPath) {  
-        if (isset($_SESSION["key"]))
+        if (isset($_SESSION["dbf2"]))
             $app->redirect('./dbf2');
 
         $app->render('login.php');
@@ -151,11 +151,11 @@ $app->post(
         $password = $app->request->post('txtPassword');
 
         if ($user == $appUser && $password == $appPassword)
-            $_SESSION["key"] = "DBF2";
+            $_SESSION["dbf2"] = "DBF2";
         else
             $_SESSION["error"] = "User or Password is incorrect";
 
-        if (isset($_SESSION["key"]))
+        if (isset($_SESSION["dbf2"]))
             $app->redirect('./dbf2');
         else
             $app->redirect('./login');
