@@ -33,6 +33,15 @@ $app->get(
     }
 );
 
+// Exit
+$app->get(
+    '/exit',
+    function () use ($app) {
+        session_destroy();
+        $app->redirect('./login');
+    }
+);
+
 // Import Dbf
 $app->post(
     '/import',

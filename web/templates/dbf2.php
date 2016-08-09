@@ -181,7 +181,17 @@
 				<button id="btn_import" class="btn btn-lg btn-primary btn-block">Import</button>
 			</div>
 		</div>
-	
+
+		<footer class="footer">
+			<div class="navbar navbar-fixed-bottom">
+	          <div class="container-fluid">
+	            <ul class="nav navbar-nav navbar-right">
+	              <li><a href="./exit"><button class="btn btn-primary">Exit</button></a></li>
+	            </ul>
+	          </div>
+	        </div>
+	    </footer>
+
 		<!-- Static Modal Credits -->
         <div class="modal fade" id="window-credits" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
